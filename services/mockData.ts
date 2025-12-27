@@ -1,5 +1,5 @@
 
-import { DashboardData } from '../types';
+import { DashboardData, DocumentRequest } from '../types';
 
 export const MOCK_DASHBOARD: DashboardData = {
   student: {
@@ -36,7 +36,14 @@ export const MOCK_DASHBOARD: DashboardData = {
     }
   ],
   requests: [
-    { id: "r1", type: "Declaração de Matrícula", status: "ready", date: "2024-05-10" },
-    { id: "r2", type: "Histórico Escolar", status: "pending", date: "2024-05-14" }
+    { id: "r1", studentName: "Guilherme Silva Santos", studentId: "10293", type: "Declaração de Matrícula", status: "ready", date: "2024-05-10", urgency: "low" },
+    { id: "r2", studentName: "Guilherme Silva Santos", studentId: "10293", type: "Histórico Escolar", status: "pending", date: "2024-05-14", urgency: "medium" }
   ]
 };
+
+export const MOCK_ADMIN_REQUESTS: DocumentRequest[] = [
+  { id: "ar1", studentName: "Ana Paula Oliveira", studentId: "10294", type: "Declaração de Matrícula", status: "pending", date: "2024-05-17", urgency: "high" },
+  { id: "ar2", studentName: "Marcos Silva", studentId: "10295", type: "Passe Escolar", status: "processing", date: "2024-05-17", urgency: "medium" },
+  { id: "ar3", studentName: "Julia Costa", studentId: "10296", type: "Histórico Escolar", status: "pending", date: "2024-05-16", urgency: "low" },
+  { id: "ar4", studentName: "Guilherme Silva Santos", studentId: "10293", type: "Histórico Escolar", status: "pending", date: "2024-05-14", urgency: "medium" },
+];

@@ -21,7 +21,7 @@ export interface User {
   name: string;
   email: string;
   role: Role;
-  profileId?: string; // Vínculo com AccessProfile
+  profileId?: string;
   registration?: string;
   avatar?: string;
 }
@@ -59,9 +59,13 @@ export interface Notice {
 
 export interface DocumentRequest {
   id: string;
+  studentName: string;
+  studentId: string;
   type: string;
-  status: 'pending' | 'ready' | 'rejected';
+  status: 'pending' | 'ready' | 'rejected' | 'processing';
   date: string;
+  urgency: 'low' | 'medium' | 'high';
+  processedBy?: string;
 }
 
 export interface DashboardData {
