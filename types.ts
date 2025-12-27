@@ -1,4 +1,15 @@
 
+export type Role = 'admin' | 'student' | 'parent';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  registration?: string;
+  avatar?: string;
+}
+
 export interface Student {
   id: string;
   name: string;
