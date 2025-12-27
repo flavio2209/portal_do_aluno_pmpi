@@ -1,11 +1,27 @@
 
 export type Role = 'admin' | 'student' | 'parent';
 
+export type Permission = 
+  | 'view_grades' 
+  | 'edit_grades' 
+  | 'manage_users' 
+  | 'manage_notices' 
+  | 'approve_documents' 
+  | 'view_reports';
+
+export interface AccessProfile {
+  id: string;
+  name: string;
+  sector: string;
+  permissions: Permission[];
+}
+
 export interface User {
   id: string;
   name: string;
   email: string;
   role: Role;
+  profileId?: string; // Vínculo com AccessProfile
   registration?: string;
   avatar?: string;
 }
@@ -29,7 +45,7 @@ export interface Subject {
     bimester3?: number;
     bimester4?: number;
   };
-  attendance: number; // percentage
+  attendance: number; 
 }
 
 export interface Notice {
