@@ -74,3 +74,16 @@ export interface DashboardData {
   notices: Notice[];
   requests: DocumentRequest[];
 }
+
+export interface SyncLog {
+  id: string;
+  timestamp: string;
+  message: string;
+  type: 'info' | 'success' | 'error' | 'warning';
+}
+
+export interface IntegrationStatus {
+  lastSync: string | null;
+  status: 'online' | 'offline' | 'error';
+  apiVersion: string;
+}
