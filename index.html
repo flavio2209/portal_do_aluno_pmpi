@@ -27,12 +27,12 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .error-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.15);
             border: 1px solid #fee2e2;
             text-align: center;
-            max-width: 480px;
+            max-width: 500px;
             margin: 20px;
         }
     </style>
@@ -57,16 +57,16 @@
         if (root && (root.innerHTML.includes('loading-spinner') || root.innerHTML === '')) {
             root.innerHTML = `
                 <div class="error-card">
-                    <div class="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <div class="w-20 h-20 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-inner">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                     </div>
-                    <h2 class="text-gray-900 font-bold text-2xl mb-3">Erro de Carregamento</h2>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Não foi possível carregar o EduConnect. Isso ocorre devido a conflitos de versão do React ou cache do navegador.</p>
-                    <div class="bg-gray-50 p-4 rounded-xl text-left text-[11px] font-mono text-red-400 mb-6 overflow-auto max-h-32 border border-gray-100">
+                    <h2 class="text-gray-900 font-black text-3xl mb-4 tracking-tight">Falha Crítica</h2>
+                    <p class="text-gray-500 text-base mb-8 leading-relaxed">Não foi possível carregar os módulos do sistema. Isso geralmente ocorre por incompatibilidade de versão ou conexão instável.</p>
+                    <div class="bg-gray-50 p-5 rounded-2xl text-left text-[11px] font-mono text-red-400 mb-8 overflow-auto max-h-40 border border-red-50/50">
                         ${msg}
                     </div>
-                    <button onclick="localStorage.clear(); location.reload();" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold text-sm shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all active:scale-[0.98]">
-                        Limpar Dados e Reiniciar
+                    <button onclick="localStorage.clear(); location.reload();" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-black text-sm shadow-2xl shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-[0.97]">
+                        Limpar Cache e Reiniciar
                     </button>
                 </div>
             `;
@@ -79,7 +79,7 @@
     <div id="root">
         <div class="flex flex-col items-center">
             <div class="loading-spinner"></div>
-            <p class="mt-4 text-sm text-gray-400 font-semibold tracking-wide animate-pulse">Iniciando EduConnect...</p>
+            <p class="mt-4 text-sm text-gray-400 font-bold tracking-widest animate-pulse">CARREGANDO EDUCONNECT...</p>
         </div>
     </div>
 </body>
