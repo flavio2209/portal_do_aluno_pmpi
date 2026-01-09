@@ -2,8 +2,13 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const getEducationalAdvice = async (studentName: string, subjects: any[]) => {
-  // Inicialização segura conforme diretrizes do SDK
-  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+  // Inicialização segura para ambiente de navegador
+  let apiKey = '';
+  try {
+    apiKey = (typeof process !== 'undefined' && process.env?.API_KEY) ? process.env.API_KEY : '';
+  } catch (e) {
+    console.warn("API Key não encontrada.");
+  }
   
   if (!apiKey) {
     return "Mantenha o foco nos estudos para garantir as melhores notas!";

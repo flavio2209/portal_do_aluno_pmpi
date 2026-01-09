@@ -33,17 +33,18 @@
             border: 1px solid #fee2e2;
             text-align: center;
             max-width: 450px;
+            margin: 20px;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
     "@google/genai": "https://esm.sh/@google/genai@1.3.0",
-    "recharts": "https://esm.sh/recharts@2.12.7?external=react,react-dom",
+    "recharts": "https://esm.sh/recharts@2.12.7?deps=react@18.3.1,react-dom@18.3.1",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
@@ -51,6 +52,7 @@
 </script>
 <script>
     window.onerror = function(msg, url, line, col, error) {
+        console.error('Portal Error:', msg, url, line);
         const root = document.getElementById('root');
         if (root && (root.innerHTML.includes('loading-spinner') || root.innerHTML === '')) {
             root.innerHTML = `
@@ -58,13 +60,13 @@
                     <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                     </div>
-                    <h2 class="text-gray-900 font-bold text-xl mb-2">Ops! Falha na Inicialização</h2>
-                    <p class="text-gray-500 text-sm mb-4">Ocorreu um erro ao carregar os módulos do portal. Isso pode ser causado por extensões do navegador ou cache corrompido.</p>
+                    <h2 class="text-gray-900 font-bold text-xl mb-2">Falha no Carregamento</h2>
+                    <p class="text-gray-500 text-sm mb-4">Ocorreu um erro ao carregar os componentes do sistema. Tente limpar o cache ou verifique sua conexão.</p>
                     <div class="bg-gray-50 p-3 rounded-lg text-left text-[10px] font-mono text-red-500 mb-4 overflow-auto max-h-32">
-                        ${msg}<br>Local: ${url}:${line}
+                        ${msg}
                     </div>
                     <button onclick="localStorage.clear(); location.reload();" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">
-                        Limpar Cache e Reiniciar
+                        Limpar Cache e Recarregar
                     </button>
                 </div>
             `;

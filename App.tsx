@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
-import Sidebar from './components/Sidebar';
-import Login from './components/Login';
-import AdminPanel from './components/AdminPanel';
-import InstallationWizard from './components/InstallationWizard';
-import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData';
-import { getEducationalAdvice } from './services/geminiService';
-import { Role } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import Login from './components/Login.tsx';
+import AdminPanel from './components/AdminPanel.tsx';
+import InstallationWizard from './components/InstallationWizard.tsx';
+import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData.ts';
+import { getEducationalAdvice } from './services/geminiService.ts';
+import { Role } from './types.ts';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const App: React.FC = () => {
@@ -69,8 +69,6 @@ const App: React.FC = () => {
     return <Login onLogin={handleLogin} />;
   }
 
-  const pendingRequestsCount = MOCK_ADMIN_REQUESTS.filter(r => r.status === 'pending').length;
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} userRole={userRole} onLogout={handleLogout} />
@@ -85,7 +83,7 @@ const App: React.FC = () => {
               {activeTab === 'requests' && 'Documentação'}
               {activeTab === 'admin-dashboard' && 'Gestão Administrativa'}
             </h2>
-            <p className="text-xs text-gray-400 hidden sm:block">Portal EduConnect | Conectado ao i-Educar</p>
+            <p className="text-xs text-gray-400 hidden sm:block">Portal EduConnect | Integrado ao i-Educar</p>
           </div>
           
           <div className="flex items-center space-x-6">
@@ -102,7 +100,7 @@ const App: React.FC = () => {
         </header>
 
         <main className="p-4 md:p-8 flex-1 overflow-y-auto">
-          <Suspense fallback={<div className="p-10 text-center text-gray-400">Carregando...</div>}>
+          <Suspense fallback={<div className="p-10 text-center text-gray-400">Carregando conteúdo...</div>}>
             {userRole === 'admin' ? (
               <AdminPanel />
             ) : (
