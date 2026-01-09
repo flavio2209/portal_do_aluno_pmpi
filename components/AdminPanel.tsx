@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { User, AccessProfile, Permission, DocumentRequest, Notice, SyncLog, IntegrationStatus } from '../types.ts';
-import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from '../services/mockData.ts';
+import { User, AccessProfile, Permission, DocumentRequest, Notice, SyncLog, IntegrationStatus } from '../types';
+import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from '../services/mockData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const AVAILABLE_PERMISSIONS: { id: Permission; label: string; description: string }[] = [
