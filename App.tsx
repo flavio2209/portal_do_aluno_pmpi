@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
-import Sidebar from './components/Sidebar';
-import Login from './components/Login';
-import AdminPanel from './components/AdminPanel';
-import InstallationWizard from './components/InstallationWizard';
-import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData';
-import { getEducationalAdvice } from './services/geminiService';
-import { Role, DocumentRequest } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import Login from './components/Login.tsx';
+import AdminPanel from './components/AdminPanel.tsx';
+import InstallationWizard from './components/InstallationWizard.tsx';
+import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData.ts';
+import { getEducationalAdvice } from './services/geminiService.ts';
+import { Role } from './types.ts';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const App: React.FC = () => {
@@ -18,9 +18,13 @@ const App: React.FC = () => {
   const [aiAdvice, setAiAdvice] = useState<string>('Analisando desempenho com IA...');
 
   useEffect(() => {
-    // Check installation status
-    const installed = localStorage.getItem('educonnect_installed') === 'true';
-    setIsInstalled(installed);
+    try {
+      const installed = localStorage.getItem('educonnect_installed') === 'true';
+      setIsInstalled(installed);
+    } catch (e) {
+      console.error("Erro ao acessar localStorage:", e);
+      setIsInstalled(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -52,7 +56,10 @@ const App: React.FC = () => {
   if (isInstalled === null) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div className="flex flex-col items-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+          <p className="mt-4 text-slate-500 font-medium">Verificando sistema...</p>
+        </div>
       </div>
     );
   }
@@ -186,8 +193,6 @@ const App: React.FC = () => {
                     </div>
                   </div>
                 )}
-
-                {/* Demais Abas permanecem conforme lógica anterior */}
               </>
             )}
           </Suspense>
