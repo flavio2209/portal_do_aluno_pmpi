@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
-import Sidebar from './components/Sidebar';
-import Login from './components/Login';
-import AdminPanel from './components/AdminPanel';
-import InstallationWizard from './components/InstallationWizard';
-import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData';
-import { getEducationalAdvice } from './services/geminiService';
-import { Role } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import Login from './components/Login.tsx';
+import AdminPanel from './components/AdminPanel.tsx';
+import InstallationWizard from './components/InstallationWizard.tsx';
+import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData.ts';
+import { getEducationalAdvice } from './services/geminiService.ts';
+import { Role } from './types.ts';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const App: React.FC = () => {
@@ -18,12 +18,11 @@ const App: React.FC = () => {
   const [aiAdvice, setAiAdvice] = useState<string>('Analisando desempenho com IA...');
 
   useEffect(() => {
-    console.log('App: Verificando estado de instalação...');
     try {
       const installed = localStorage.getItem('educonnect_installed') === 'true';
       setIsInstalled(installed);
     } catch (e) {
-      console.error("App: Erro ao acessar localStorage:", e);
+      console.error("Erro ao acessar localStorage:", e);
       setIsInstalled(false);
     }
   }, []);
