@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar.tsx';
 import Login from './components/Login.tsx';
 import AdminPanel from './components/AdminPanel.tsx';
 import InstallationWizard from './components/InstallationWizard.tsx';
-import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData.ts';
+import { MOCK_DASHBOARD } from './services/mockData.ts';
 import { getEducationalAdvice } from './services/geminiService.ts';
 import { Role } from './types.ts';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';

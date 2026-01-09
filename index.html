@@ -44,7 +44,7 @@
     "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
     "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
     "@google/genai": "https://esm.sh/@google/genai@1.3.0",
-    "recharts": "https://esm.sh/recharts@2.12.7?external=react,react-dom",
+    "recharts": "https://esm.sh/recharts@2.12.7?deps=react@18.3.1,react-dom@18.3.1",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
@@ -61,7 +61,7 @@
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                     </div>
                     <h2 class="text-gray-900 font-bold text-2xl mb-3">Erro de Carregamento</h2>
-                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Não foi possível carregar os módulos do EduConnect. Isso geralmente acontece por cache corrompido ou instabilidade na rede.</p>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Não foi possível carregar o EduConnect. Isso ocorre devido a conflitos de versão do React ou cache do navegador.</p>
                     <div class="bg-gray-50 p-4 rounded-xl text-left text-[11px] font-mono text-red-400 mb-6 overflow-auto max-h-32 border border-gray-100">
                         ${msg}
                     </div>
