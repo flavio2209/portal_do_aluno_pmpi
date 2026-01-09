@@ -3,12 +3,18 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Login from './components/Login';
 import AdminPanel from './components/AdminPanel';
+import InstallationWizard from './components/InstallationWizard';
 import { MOCK_DASHBOARD, MOCK_ADMIN_REQUESTS } from './services/mockData';
 import { getEducationalAdvice } from './services/geminiService';
 import { Role, DocumentRequest } from './types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const App: React.FC = () => {
+  // Simulação de check de instalação (Em produção verificaria um arquivo config.json ou .env)
+  const [isInstalled, setIsInstalled] = useState(() => {
+    return localStorage.getItem('educonnect_installed') === 'true';
+  });
+  
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState<Role>('student');
   const [userEmail, setUserEmail] = useState('');
@@ -40,22 +46,28 @@ const App: React.FC = () => {
     setUserEmail('');
   };
 
+  const handleInstallComplete = () => {
+    localStorage.setItem('educonnect_installed', 'true');
+    setIsInstalled(true);
+  };
+
+  // Se não estiver instalado, mostra o Wizard
+  if (!isInstalled) {
+    return <InstallationWizard onComplete={handleInstallComplete} />;
+  }
+
+  // Se não estiver logado, mostra Login
   if (!isAuthenticated) {
     return <Login onLogin={handleLogin} />;
   }
 
   const getStatusConfig = (status: DocumentRequest['status']) => {
     switch (status) {
-      case 'ready':
-        return { label: 'Pronto', color: 'bg-green-100 text-green-700 border-green-200', icon: 'M5 13l4 4L19 7' };
-      case 'pending':
-        return { label: 'Pendente', color: 'bg-amber-100 text-amber-700 border-amber-200', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' };
-      case 'rejected':
-        return { label: 'Rejeitado', color: 'bg-red-100 text-red-700 border-red-200', icon: 'M6 18L18 6M6 6l12 12' };
-      case 'processing':
-        return { label: 'Processando', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' };
-      default:
-        return { label: 'Status', color: 'bg-gray-100 text-gray-700 border-gray-200', icon: '' };
+      case 'ready': return { label: 'Pronto', color: 'bg-green-100 text-green-700 border-green-200', icon: 'M5 13l4 4L19 7' };
+      case 'pending': return { label: 'Pendente', color: 'bg-amber-100 text-amber-700 border-amber-200', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' };
+      case 'rejected': return { label: 'Rejeitado', color: 'bg-red-100 text-red-700 border-red-200', icon: 'M6 18L18 6M6 6l12 12' };
+      case 'processing': return { label: 'Processando', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' };
+      default: return { label: 'Status', color: 'bg-gray-100 text-gray-700 border-gray-200', icon: '' };
     }
   };
 
@@ -113,7 +125,6 @@ const App: React.FC = () => {
             <>
               {activeTab === 'dashboard' && (
                 <div className="space-y-6">
-                  {/* Cards de Dashboard do Aluno conforme implementado */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4">
                       <div className="bg-green-100 p-4 rounded-xl text-green-600"><svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>

@@ -1,7 +1,8 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+// Inicialização estrita conforme as diretrizes do desenvolvedor
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getEducationalAdvice = async (studentName: string, subjects: any[]) => {
   const prompt = `
@@ -16,9 +17,11 @@ export const getEducationalAdvice = async (studentName: string, subjects: any[])
       model: 'gemini-3-flash-preview',
       contents: prompt,
     });
+    
+    // O uso de .text é uma propriedade, não um método
     return response.text;
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Não foi possível gerar uma análise no momento. Continue se esforçando nos estudos!";
+    return "Não foi possível gerar uma análise personalizada no momento. Continue focado nos estudos e mantenha a consistência!";
   }
 };
